@@ -1,4 +1,4 @@
-# Heptabase Track Changes
+# Heptabase Track What AI Edited
 
 [繁體中文](README.zh-TW.md)
 
@@ -28,11 +28,11 @@ Heptabase's own diff view lives in the app and is not saved in card content, and
 
 Tell your agent (with Heptabase connected through MCP or the CLI):
 
-> Install the Heptabase Skill from https://github.com/RTsai1202/heptabase-track-changes by following its INSTALL.md.
+> Install the Heptabase Skill from https://github.com/RTsai1202/heptabase-track-what-ai-edited by following its INSTALL.md.
 
 Or create it manually in Heptabase: make a new Skill with the command, display name, and description in [`skill/skill.json`](skill/skill.json), and paste [`skill/instructions.md`](skill/instructions.md) as its instructions.
 
-Optional: agents with their own skill folders can also install [`agent-skill/heptabase-track-changes`](agent-skill/heptabase-track-changes/SKILL.md), a short pointer that makes them load the Heptabase Skill whenever they edit Heptabase content.
+Optional: agents with their own skill folders can also install [`agent-skill/heptabase-track-what-ai-edited`](agent-skill/heptabase-track-what-ai-edited/SKILL.md), a short pointer that makes them load the Heptabase Skill whenever they edit Heptabase content.
 
 ## Use
 

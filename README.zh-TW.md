@@ -1,4 +1,4 @@
-# Heptabase Track Changes
+# Heptabase Track What AI Edited
 
 [English](README.md)
 
@@ -28,11 +28,11 @@ Heptabase 內建的 diff 畫面只存在 App 裡，不會存進卡片內容；�
 
 對已連上 Heptabase（MCP 或 CLI）的 AI 說：
 
-> 依照 https://github.com/RTsai1202/heptabase-track-changes 的 INSTALL.md 安裝這個 Heptabase Skill。
+> 依照 https://github.com/RTsai1202/heptabase-track-what-ai-edited 的 INSTALL.md 安裝這個 Heptabase Skill。
 
 或在 Heptabase 手動建立：新增一個 Skill，指令、名稱、說明照 [`skill/skill.json`](skill/skill.json)，指令內容貼上 [`skill/instructions.md`](skill/instructions.md)。
 
-選用：有自己 skill 資料夾的 AI 工具，可另外安裝 [`agent-skill/heptabase-track-changes`](agent-skill/heptabase-track-changes/SKILL.md)。它只是一個指標，讓工具每次改 Heptabase 內容時都會去讀 Heptabase 裡的 Skill。
+選用：有自己 skill 資料夾的 AI 工具，可另外安裝 [`agent-skill/heptabase-track-what-ai-edited`](agent-skill/heptabase-track-what-ai-edited/SKILL.md)。它只是一個指標，讓工具每次改 Heptabase 內容時都會去讀 Heptabase 裡的 Skill。
 
 ## 使用
 
