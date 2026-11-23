@@ -7,6 +7,8 @@ It has two modes:
 - **Mark**: make the requested change as a visible suggestion.
 - **Resolve**: accept or reject marked suggestions, then remove all marks.
 
+Both modes end the same way: show the changed cards in the conversation with `render_cards`, then reply with links.
+
 ## Who uses this Skill
 
 This Skill is for **external agents** that edit through the Heptabase MCP server or the Heptabase CLI, such as Claude Code, Codex, Claude, ChatGPT, or Grok.
@@ -72,9 +74,13 @@ If one request produces more than 8 hunks in the same card, ask before writing w
 
 Apply all hunks and markers of one card in a single edit, so the card is never left half-marked. Check the saved result: every hunk has its marker, the old text is intact inside the red marks, and nothing outside the hunks changed.
 
-### 5. Reply
+### 5. Show the cards (required)
 
-Show each changed card or journal in the conversation, so the user sees the red and green marks without leaving the chat (see "Showing cards in the conversation"). Then list its markers with their summaries. Tell the user how to finish: check the markers they accept and ask to resolve, or name markers to accept or reject, such as "accept E1, reject E2".
+Call `render_cards` with every changed card and journal, before you write the reply. Follow "Showing cards with `render_cards`" below.
+
+### 6. Reply
+
+Give a link to each changed card or journal with its title, and list its markers with their summaries. Tell the user how to finish: check the markers they accept and ask to resolve, or name markers to accept or reject, such as "accept E1, reject E2". Then run the completion check at the end of this card.
 
 ## Resolve mode
 
@@ -100,15 +106,33 @@ A marker's hunk is the run of blocks below it that contain red strikethrough or 
 
 Apply all decisions for one card in a single edit, then check that no marks or markers remain for the resolved hunks and that unresolved hunks are untouched.
 
-### 4. Reply
+### 4. Show the cards (required)
 
-Show each resolved card or journal in the conversation (see "Showing cards in the conversation"). Report per card which markers were accepted, rejected, or left open.
+Call `render_cards` with every resolved card and journal, before you write the reply. Follow "Showing cards with `render_cards`" below.
 
-## Showing cards in the conversation
+### 5. Reply
 
-After all edits are written, show the changed cards and journals inline in the conversation with Heptabase's card display, if your client supports it. Clients that render MCP Apps, such as Claude, Claude Code desktop, and ChatGPT, show the card with its colors and to-do markers. Show the changed cards together in one display, at most 20, in the order you changed them.
+Give a link to each card or journal with its title. Report per card which markers were accepted, rejected, or left open. Then run the completion check at the end of this card.
 
-Always also give a link to each card or journal with its title. A text-only client, such as a terminal or a CLI-only agent, cannot show the card, so the link is how the user opens it. If showing the card fails, keep the links and do not retry.
+## Showing cards with `render_cards`
+
+`render_cards` is a tool of the Heptabase MCP server. It shows cards inside the conversation with their colors and to-do markers, so the user can review the marks without leaving the chat.
+
+- **When**: once, after every edit in this request is saved and verified, and before the final reply.
+- **What to pass**: every card and journal you changed in this request, in the order you changed them, at most 20. A note card uses its card ID with type `card`; a journal uses its date as the ID with type `journal`.
+- **Rule**: if `render_cards` is in your tool list, call it. Do not skip it because you are unsure whether your app can display it; the tool handles that. Skipping it when it is available is an incomplete run.
+- **Not available**: an agent that uses only the Heptabase CLI, or a connection without this tool, has no way to show cards. Give the links only.
+- **Fails**: keep the links in the reply and do not retry.
+- **Heptabase AI Agent**: skip this step; the user is already looking at the card in the app.
+
+## Completion check
+
+Before you end a Mark or Resolve run, confirm each item. If one is missing, do it now.
+
+- Every edit is saved and read back.
+- Mark mode: every hunk has its marker. Resolve mode: no marks or markers remain for resolved hunks.
+- `render_cards` was called with every changed card and journal, unless it is not in your tool list.
+- The reply has a link to each changed card or journal.
 
 ## Example
 
@@ -117,11 +141,11 @@ Request: "Change the meeting to Thursday and make the closing paragraph shorter.
 Result in the card:
 
 ```
-- [ ] 🤖 AI edit E1 · 2026-11-23 14:05 · Claude Code (Opus 5.5) · Moved the meeting to Thursday
+- 🤖 AI edit E1 · 2026-11-23 14:05 · Claude Code (Opus 5.5) · Moved the meeting to Thursday
 
 The meeting is on <hepta-color type="text" color="red">~~Wednesday~~</hepta-color><hepta-color type="text" color="green">Thursday</hepta-color> afternoon.
 
-- [ ] 🤖 AI edit E2 · 2026-11-23 14:05 · Claude Code (Opus 5.5) · Shortened the closing paragraph
+- 🤖 AI edit E2 · 2026-11-23 14:05 · Claude Code (Opus 5.5) · Shortened the closing paragraph
 
 <hepta-color type="text" color="red">~~In conclusion, after considering all of the points above in detail, we believe that the plan is feasible and should move forward.~~</hepta-color>
 
