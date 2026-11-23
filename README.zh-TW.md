@@ -24,6 +24,23 @@ Heptabase App 裡的內建 AI 不需要這個 Skill，它的修改本來就會�
 
 Heptabase 內建的 diff 畫面只存在 App 裡，不會存進卡片內容；「Created by AI」也只標記新建的卡片。顏色和 ToDo 是一般內容，所以每個 AI 都能用，同步也不會掉。
 
+## 哪些 AI 可以用
+
+任何透過 MCP 或 CLI 連上 Heptabase 的 AI，都能執行你空間裡的 Skill。Heptabase 在 MCP 與 CLI 0.11.0 正式推出這個功能。
+
+| 來源 | 內容 |
+| --- | --- |
+| [Heptabase 公開 Roadmap](https://wiki.heptabase.com/roadmap/) | 「MCP & Heptabase CLI 0.11.0: Use skills such as Break down book, and create and update your own skills.」2026-11-10 已推出（v1.117.1） |
+| [How to use Heptabase MCP?](https://support.heptabase.com/en/articles/12679581-how-to-use-heptabase-mcp) | MCP 的能力包含「執行空間裡存的 Skill」 |
+| Heptabase 系統手冊 `skills` 頁（由 MCP 與 CLI 提供） | Skill 存在你的知識庫，Heptabase 內建 AI 和所有連線的 AI 用的是同一份 |
+
+官方 MCP 說明列出的支援工具：ChatGPT（網頁版自訂 MCP App，或官方 plugin）、Claude 與 Codex（官方 plugin）、Claude Code、Cursor、Antigravity CLI、Grok（Grok Bot，或 grok.com 自訂 connector），以及其他支援遠端 MCP 的服務。
+
+各類 AI 怎麼找到這個 Skill：
+
+- **網頁版聊天 AI**（ChatGPT、Claude、Grok）：透過 MCP。AI 讀空間指示時會看到 Skill 清單。萬一沒用上，在對話中說「用 track-what-ai-edited」或「標記修改」。
+- **有 skill 資料夾的 AI 工具**（Claude Code、Codex、Antigravity、OpenCode 等會讀 `SKILL.md` 的工具）：透過 MCP 或 CLI，再加上選用的[轉介 skill](agent-skill/heptabase-track-what-ai-edited/SKILL.md)，讓它們每次改 Heptabase 內容都會載入這個 Skill。
+
 ## 安裝
 
 對已連上 Heptabase（MCP 或 CLI）的 AI 說：

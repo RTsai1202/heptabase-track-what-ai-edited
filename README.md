@@ -24,6 +24,23 @@ The Heptabase AI Agent inside the app does not need this Skill: its edits alread
 
 Heptabase's own diff view lives in the app and is not saved in card content, and the "Created by AI" flag only covers newly created cards. Colored text and to-do items are ordinary content, so they work with every agent and survive sync.
 
+## Which agents can use it
+
+Any agent connected to Heptabase through MCP or the CLI can run Skills saved in your space. Heptabase shipped this in MCP & Heptabase CLI 0.11.0.
+
+| Source | What it says |
+| --- | --- |
+| [Heptabase public roadmap](https://wiki.heptabase.com/roadmap/) | "MCP & Heptabase CLI 0.11.0: Use skills such as Break down book, and create and update your own skills." Shipped on 2026-11-10 (v1.117.1). |
+| [How to use Heptabase MCP?](https://support.heptabase.com/en/articles/12679581-how-to-use-heptabase-mcp) | Lists "Use skills: run the skills saved in your space" among MCP capabilities. |
+| Heptabase system manual, `skills` page (served by the MCP server and CLI) | A Skill lives in your knowledge base, so the Heptabase AI Agent and every connected agent use the same one. |
+
+Clients listed in the official MCP guide: ChatGPT (custom MCP app on the web, or the official plugin), Claude and Codex (official plugin), Claude Code, Cursor, Antigravity CLI, Grok (Grok Bot or a custom connector on grok.com), and other services that support remote MCP servers.
+
+How each kind of agent finds this Skill:
+
+- **Web chat apps** (ChatGPT, Claude, Grok): through MCP. Agents see the Skill list when they read your Space Instructions. If an agent skips it, say "use track-what-ai-edited" or "mark the changes".
+- **Agents with skill folders** (Claude Code, Codex, Antigravity, OpenCode, and others that read `SKILL.md`): through MCP or the CLI, plus the optional [pointer skill](agent-skill/heptabase-track-what-ai-edited/SKILL.md), which makes them load this Skill whenever they edit Heptabase content.
+
 ## Install
 
 Tell your agent (with Heptabase connected through MCP or the CLI):
