@@ -12,6 +12,8 @@ Heptabase's built-in AI shows its edits as a red and green diff before you accep
 | Added text | Green text |
 | Each changed region | A to-do above it: `🤖 AI edit E1 · 2026-11-23 14:05 · Claude Code · Shortened the conclusion` |
 
+After editing, the agent shows the changed cards right in the chat, with the colors and markers visible, in clients that render MCP Apps (Claude, Claude Code desktop, ChatGPT). Text-only clients get a link to each card instead.
+
 The to-do markers make changes easy to spot and jump to from a whiteboard. When you are done reviewing, check the markers you accept and tell the agent to resolve. It removes the marks: accepted changes become plain text, rejected ones revert.
 
 ## Why a Heptabase Skill

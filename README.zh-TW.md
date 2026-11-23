@@ -12,6 +12,8 @@ Heptabase 內建 AI 修改時會先用紅綠 diff 給你看。外部 AI 透過 M
 | 新增的文字 | 綠字 |
 | 每一處修改 | 上方加一個 ToDo：`🤖 AI edit E1 · 2026-11-23 14:05 · Claude Code · 精簡結論段` |
 
+改完後，支援 MCP Apps 的 AI（Claude、Claude Code 桌面版、ChatGPT）會直接在對話裡顯示改過的卡片，紅綠標記看得到。只能顯示文字的 AI 則改給每張卡片的連結。
+
 ToDo 標記讓你在白板上一眼找到修改處並跳過去。審完後，勾選你接受的標記，再請 AI 收尾。AI 會清掉標記：接受的改成一般文字，拒絕的還原。
 
 ## 為什麼做成 Heptabase Skill

@@ -68,7 +68,7 @@ Apply all hunks and markers of one card in a single edit, so the card is never l
 
 ### 5. Reply
 
-Give a link to each changed card or journal and list its markers with their summaries. Tell the user how to finish: check the markers they accept and ask to resolve, or name markers to accept or reject, such as "accept E1, reject E2".
+Show each changed card or journal in the conversation, so the user sees the red and green marks without leaving the chat (see "Showing cards in the conversation"). Then list its markers with their summaries. Tell the user how to finish: check the markers they accept and ask to resolve, or name markers to accept or reject, such as "accept E1, reject E2".
 
 ## Resolve mode
 
@@ -96,7 +96,13 @@ Apply all decisions for one card in a single edit, then check that no marks or m
 
 ### 4. Reply
 
-Report per card: which markers were accepted, rejected, or left open, with a link to the card.
+Show each resolved card or journal in the conversation (see "Showing cards in the conversation"). Report per card which markers were accepted, rejected, or left open.
+
+## Showing cards in the conversation
+
+After all edits are written, show the changed cards and journals inline in the conversation with Heptabase's card display, if your client supports it. Clients that render MCP Apps, such as Claude, Claude Code desktop, and ChatGPT, show the card with its colors and to-do markers. Show the changed cards together in one display, at most 20, in the order you changed them.
+
+Always also give a link to each card or journal with its title. A text-only client, such as a terminal or a CLI-only agent, cannot show the card, so the link is how the user opens it. If showing the card fails, keep the links and do not retry.
 
 ## Example
 
