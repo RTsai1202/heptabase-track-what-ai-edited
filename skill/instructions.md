@@ -120,8 +120,10 @@ Give a link to each card or journal with its title. Report per card which marker
 
 - **When**: once, after every edit in this request is saved and verified, and before the final reply.
 - **What to pass**: every card and journal you changed in this request, in the order you changed them, at most 20. A note card uses its card ID with type `card`; a journal uses its date as the ID with type `journal`.
-- **Rule**: if `render_cards` is in your tool list, call it. Do not skip it because you are unsure whether your app can display it; the tool handles that. Skipping it when it is available is an incomplete run.
-- **Not available**: an agent that uses only the Heptabase CLI, or a connection without this tool, has no way to show cards. Give the links only.
+- **Find it**: your client may show the tool with a prefix, such as `mcp__Heptabase__render_cards` or `heptabase.render_cards`; use the Heptabase tool whose name ends in `render_cards`. If your tools load on demand, search for `render_cards` before you decide it is not available.
+- **Rule**: if the tool is available, call it. Do not skip it because you are unsure whether your app can display it; the tool handles that. Skipping it when it is available is an incomplete run.
+- **No substitutes**: never replace it with your own drawing, mock-up, image, HTML preview, or text imitation of the card. Only `render_cards` shows the real card.
+- **Not available**: an agent that uses only the Heptabase CLI, or a connection without this tool, has no way to show cards. Give the links only, and say that the card could not be shown here.
 - **Fails**: keep the links in the reply and do not retry.
 - **Heptabase AI Agent**: skip this step; the user is already looking at the card in the app.
 
@@ -131,7 +133,7 @@ Before you end a Mark or Resolve run, confirm each item. If one is missing, do i
 
 - Every edit is saved and read back.
 - Mark mode: every hunk has its marker. Resolve mode: no marks or markers remain for resolved hunks.
-- `render_cards` was called with every changed card and journal, unless it is not in your tool list.
+- `render_cards` was called with every changed card and journal, unless you searched and it is not available. No self-made preview replaced it.
 - The reply has a link to each changed card or journal.
 
 ## Example
@@ -141,11 +143,11 @@ Request: "Change the meeting to Thursday and make the closing paragraph shorter.
 Result in the card:
 
 ```
-- 🤖 AI edit E1 · 2026-11-23 14:05 · Claude Code (Opus 5.5) · Moved the meeting to Thursday
+- [ ] 🤖 AI edit E1 · 2026-11-23 14:05 · Claude Code (Opus 5.5) · Moved the meeting to Thursday
 
 The meeting is on <hepta-color type="text" color="red">~~Wednesday~~</hepta-color><hepta-color type="text" color="green">Thursday</hepta-color> afternoon.
 
-- 🤖 AI edit E2 · 2026-11-23 14:05 · Claude Code (Opus 5.5) · Shortened the closing paragraph
+- [ ] 🤖 AI edit E2 · 2026-11-23 14:05 · Claude Code (Opus 5.5) · Shortened the closing paragraph
 
 <hepta-color type="text" color="red">~~In conclusion, after considering all of the points above in detail, we believe that the plan is feasible and should move forward.~~</hepta-color>
 
