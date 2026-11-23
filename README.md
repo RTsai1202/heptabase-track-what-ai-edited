@@ -18,7 +18,9 @@ The to-do markers make changes easy to spot and jump to from a whiteboard. When 
 
 ## Why a Heptabase Skill
 
-Heptabase stores Skills as instruction cards in your own space. The Heptabase AI Agent and every connected agent (Claude Code, Codex, Claude.ai, ChatGPT, and others) read the same card, so there is one copy to maintain. This repository only holds the text to install.
+Heptabase stores Skills as instruction cards in your own space. Every connected agent (Claude Code, Codex, Claude, ChatGPT, Grok, and others) reads the same card, so you install once and maintain one copy.
+
+The Heptabase AI Agent inside the app does not need this Skill: its edits already go through Heptabase's built-in review. The card tells it to edit the built-in way. The one exception is cleaning up markers that an external agent left, which it may do on request.
 
 Heptabase's own diff view lives in the app and is not saved in card content, and the "Created by AI" flag only covers newly created cards. Colored text and to-do items are ordinary content, so they work with every agent and survive sync.
 
@@ -37,7 +39,10 @@ Optional: agents with their own skill folders can also install [`agent-skill/hep
 - "Rewrite the second paragraph of this card." The agent asks once whether to mark changes or edit directly, then marks them.
 - "Resolve the AI edits on this card." Checked markers are accepted; unchecked ones stay for later.
 - "Accept E1, reject E2." / "Accept all."
-- In the Heptabase app: `/track-changes`.
+
+## Update
+
+After installing, the instruction card in your Heptabase space is your working copy. To change the Skill, ask any connected agent to edit that card; every agent uses the new version on its next run. Changing this repository does not change your installed copy. To pull a newer release from this repository, run the install again: the agent compares versions and asks before replacing your card.
 
 ## Limits
 

@@ -1,7 +1,7 @@
 {
   "commandName": "track-changes",
   "displayName": "Track AI Edits",
-  "description": "When an agent changes existing card or journal text, mark deletions in red strikethrough and additions in green with a dated to-do marker above each change, then accept or reject the marked changes and clean them up on request.",
+  "description": "For external agents editing through the Heptabase MCP server or CLI (not the built-in Heptabase AI Agent): mark deletions in red strikethrough and additions in green with a dated to-do marker above each change to existing card or journal text, then accept or reject the marked changes and clean them up on request.",
   "instructionsFile": "instructions.md",
   "version": "0.1.0"
 }

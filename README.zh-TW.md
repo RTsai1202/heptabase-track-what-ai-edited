@@ -18,7 +18,9 @@ ToDo 標記讓你在白板上一眼找到修改處並跳過去。審完後，勾
 
 ## 為什麼做成 Heptabase Skill
 
-Heptabase 把 Skill 存成你空間裡的一張指令卡。Heptabase 內建 AI 和所有連線的 AI（Claude Code、Codex、Claude.ai、ChatGPT 等）都讀同一張卡，只要維護一個地方。這個 repo 只放安裝用的原文。
+Heptabase 把 Skill 存成你空間裡的一張指令卡。所有連線的 AI（Claude Code、Codex、Claude、ChatGPT、Grok 等）都讀同一張卡，裝一次就好，也只要維護一份。
+
+Heptabase App 裡的內建 AI 不需要這個 Skill，它的修改本來就會經過 Heptabase 內建的確認畫面。指令卡會告訴它照內建方式修改。唯一例外：你要它清掉外部 AI 留下的標記時，它可以幫忙收尾。
 
 Heptabase 內建的 diff 畫面只存在 App 裡，不會存進卡片內容；「Created by AI」也只標記新建的卡片。顏色和 ToDo 是一般內容，所以每個 AI 都能用，同步也不會掉。
 
@@ -37,7 +39,10 @@ Heptabase 內建的 diff 畫面只存在 App 裡，不會存進卡片內容；�
 - 「改寫這張卡片的第二段。」AI 先問一次要標記還是直接改，再標記修改。
 - 「幫這張卡片的 AI 修改收尾。」勾選的標記會被接受，沒勾的保留。
 - 「接受 E1，拒絕 E2。」／「全部接受。」
-- 在 Heptabase App 裡輸入 `/track-changes`。
+
+## 更新
+
+裝好之後，你 Heptabase 空間裡的那張指令卡就是你實際在用的版本。要改 Skill，請任何連線的 AI 去改那張卡，所有 AI 下次執行就用新版。改這個 repo 不會改到你裝好的那份。要套用這個 repo 的新版，再跑一次安裝即可：AI 會比對版本，問過你才覆蓋。
 
 ## 限制
 

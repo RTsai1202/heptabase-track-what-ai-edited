@@ -7,6 +7,12 @@ It has two modes:
 - **Mark**: make the requested change as a visible suggestion.
 - **Resolve**: accept or reject marked suggestions, then remove all marks.
 
+## Who uses this Skill
+
+This Skill is for **external agents** that edit through the Heptabase MCP server or the Heptabase CLI, such as Claude Code, Codex, Claude, ChatGPT, or Grok.
+
+**The Heptabase AI Agent inside the Heptabase app does not use Mark mode.** Its edits already go through Heptabase's own review, which shows the changes and lets the user accept or reject them. When you are the Heptabase AI Agent, edit content the normal built-in way and ignore this Skill. The only exception: when the user explicitly asks you to resolve, accept, or reject existing `🤖 AI edit` markers left by an external agent, follow Resolve mode, and let the built-in review show your cleanup as usual.
+
 Write the marker text, summaries, and replies in the user's language. Keep the fixed prefix `🤖 AI edit` in every language, because Resolve finds markers by it.
 
 ## Choosing the mode
@@ -57,7 +63,7 @@ Insert a to-do item directly above the first block of each hunk, at the same ind
 
 - **E<n>**: a number unique within this card or journal. Use the next number after the highest `E` number already present, starting at E1.
 - **Date and time**: the user's local time.
-- **Editor**: the agent or tool making the edit, such as `Claude Code`, `Codex`, or `Heptabase AI`; add the model name when known. If a person asked for it on someone else's behalf, write `<agent> for <person>`.
+- **Editor**: the agent or tool making the edit, such as `Claude Code`, `Codex`, or `ChatGPT`; add the model name when known. If a person asked for it on someone else's behalf, write `<agent> for <person>`.
 - **Summary**: one short sentence on what changed and why, such as "Shortened the conclusion and fixed the date".
 
 If one request produces more than 8 hunks in the same card, ask before writing whether to keep one marker per hunk or use one marker at the top of the card that lists all changes.
